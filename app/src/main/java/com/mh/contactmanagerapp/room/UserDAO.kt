@@ -1,5 +1,6 @@
 package com.mh.contactmanagerapp.room
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -18,8 +19,10 @@ interface UserDAO {
     @Delete
     suspend fun deleteUser(user: User)
 
-    // Custom query
+    // Custom queries
     @Query("DELETE FROM user")
     suspend fun deleteAllUsers()
 
+    @Query("Select * FROM user")
+    fun getAllUsers(): LiveData<List<User>>
 }
