@@ -5,6 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
+    <data>
+        <variable
+            name="userViewModel"
+            type="com.mh.contactmanagerapp.myviewmodel.UserViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,6 +27,7 @@
 
             <EditText
                 android:id="@+id/nameET"
+                android:text="@={userViewModel.inputName}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -35,6 +42,7 @@
 
             <EditText
                 android:id="@+id/emailET"
+                android:text="@={userViewModel.inputEmail}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -50,12 +58,13 @@
 
             <Button
                 android:id="@+id/saveBtn"
+                android:onClick="@{() -> userViewModel.saveOrUpdate()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="1dp"
-                android:text="Save"
+                android:text="@={userViewModel.saveOrUpdateButtonText}"
                 app:layout_constraintBottom_toTopOf="@+id/deleteBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/nameET"
@@ -63,10 +72,11 @@
 
             <Button
                 android:id="@+id/deleteBtn"
+                android:onClick="@{() -> userViewModel.clearAllOrDelete()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="Delete"
+                android:text="@={userViewModel.clearAllOrDeleteButtonText}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/emailET"
